@@ -1,0 +1,81 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract ArithmeticOperations {
+    // Addition function
+    function add(uint256 a, uint256 b) external pure returns (uint256) {
+        // Input validation
+        require(a + b >= a, "Addition overflow");
+        
+        // Execution
+        assert(a + b >= a);
+        
+        // Result
+        return a + b;
+    }
+    
+    // Subtraction function
+    function subtract(uint256 a, uint256 b) external pure returns (uint256) {
+        // Input validation
+        require(a >= b, "Subtraction underflow");
+        
+        // Execution
+        assert(a - b <= a);
+        
+        // Result
+        return a - b;
+    }
+    
+    // Multiplication function
+    function multiply(uint256 a, uint256 b) external pure returns (uint256) {
+        // Input validation
+        require(b == 0 || (a * b) / b == a, "Multiplication overflow");
+        
+        // Execution
+        assert(a * b / b == a);
+        
+        // Result
+        return a * b;
+    }
+    
+    // Division function
+    function divide(uint256 a, uint256 b) external pure returns (uint256) {
+        // Input validation
+        require(b != 0, "Division by zero");
+        
+        // Execution
+        assert(a / b * b == a);
+   
+        // Revert
+        if (a % b != 0) {
+            revert("Numerator is not divisible to Divisor.");
+        }     
+
+        // Result
+        return a / b;
+    }
+    
+    // Remainder function (modulus)
+    function remainder(uint256 a, uint256 b) external pure returns (uint256) {
+        // Input validation
+        require(b != 0, "Division by zero");
+        
+        // Execution
+        assert(a % b < b);
+        
+        // Result
+        return a % b;
+        
+    }
+    
+    // Exponentiation function
+    function power(uint256 base, uint256 exponent) external pure returns (uint256) {
+        // Input validation
+        require(exponent >= 0, "Exponent must be non-negative");
+        
+        // Execution (no need for assertion as overflow/underflow not possible)
+        
+        // Result
+        return base ** exponent;
+    }
+}
